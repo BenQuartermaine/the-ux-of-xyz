@@ -4,23 +4,20 @@ import Post from './Post';
 class List extends React.Component {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
-
+    this.renderList = this.renderList.bind(this);
   }
 
-  handleClick(e) {
-    console.log(e.target);
+  renderList(post) {
+    return(
+      <li key={post.name} name={post.name}>{post.name} IS ABOUT {post.content}</li>
+    )
   }
 
   render() {
     return (
       <div className="post-list">
-        <ul onClick={this.handleClick}>
-          <li>
-            {
-            this.props.posts.map((post, i) => post[i] />)
-            }
-          </li>
+        <ul>
+          {this.props.posts.map(post => this.renderList(post))}
         </ul>
       </div>
     )
