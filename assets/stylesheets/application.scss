@@ -8,3 +8,25 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+#root > div {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.left-scene {
+  flex: 0 0 25%;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-scene {
+  flex: 0 0 75%;
+  position: sticky;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+
+}
