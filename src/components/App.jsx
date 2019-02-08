@@ -2,7 +2,10 @@ import React from 'react';
 import Post from './Post';
 import List from './List';
 import Header from './Header';
+import Slider from './Slider';
+
 import * as contentful from 'contentful'
+
 
 class App extends React.Component {
   constructor() {
@@ -50,14 +53,7 @@ class App extends React.Component {
         />
       </div>
       <div className="right-scene">
-      {
-        Object
-          .keys(this.state.selectedPost)
-          .map(post => <Post key={post} 
-          selectedPost={this.state.selectedPost}
-          updateSelectedPost={this.updateSelectedPost} />)
-      }
-        
+        <Slider />
       </div>
     </div>
     )
