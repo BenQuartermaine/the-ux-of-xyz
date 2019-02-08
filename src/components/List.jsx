@@ -4,20 +4,23 @@ import Post from './Post';
 class List extends React.Component {
   constructor() {
     super();
-    this.renderList = this.renderList.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  renderList(post) {
-    return(
-      <li key={post.name} name={post.name}>{post.name} IS ABOUT {post.content}</li>
-    )
+  handleClick(e) {
+    const index = e.target.dataset.index;
+    this.props.updateSelectedPost(index);
   }
 
   render() {
     return (
       <div className="post-list">
         <ul>
-          {this.props.posts.map(post => this.renderList(post))}
+          {
+            this.props.posts.map(({fields}, i) => {
+              return <li onClick={this.handleClick} key={i} data-index={i}>{fields.openingText}</li>
+            })
+          }
         </ul>
       </div>
     )

@@ -2,6 +2,7 @@ import React from 'react';
 import Post from './Post';
 import List from './List';
 import Header from './Header';
+import * as contentful from 'contentful'
 
 class App extends React.Component {
   constructor() {
@@ -9,30 +10,38 @@ class App extends React.Component {
     this.updateSelectedPost = this.updateSelectedPost.bind(this)
 
     this.state = {
-      posts: [{
-          name: 'the ux of life', 
-          content: 'Life is a box of chocolates'
-        },   
-        {
-          name: 'the ux of small print pizza', 
-          content: 'Pizza comes in all shapes and sizes'
-        }, 
-        {
-          name: 'the ux of a first date', 
-          content: 'dates come in all shapes and sizes'
-        }],
-      selectedPost: {
-        name: 'this is the default case',
-        content: 'this is the default content'
-      }
+      posts: [],
+      selectedPost: {}
     }
   }
 
-  updateSelectedPost(name, content) {
+  client = contentful.createClient({
+    space: 'g0l7uav882oc',
+    accessToken: '4215982da63c13e8d6a98f4137041d176a1f7c97504329876ca2423b010b480b'
+  })
+
+  componentDidMount() {
+    this.fetchPosts().then(this.setPosts);
+  }
+
+  fetchPosts = () => this.client.getEntries()
+  setPosts = response => {
+    this.setState({
+      posts: response.items
+    })
+  }
+
+  componentWillMount() {
+    if (this.state.selectedPost = {}) {
+      this.updateSelectedPost(0)
+    }
+  }
+
+  updateSelectedPost(index) {
     const selectedPost = {...this.state.selectedPost}
-    selectedPost = { name, content }
-    this.setState({ selectedPost });
-    console.log('state updated')
+    this.setState({
+      selectedPost: this.state.posts[index]
+    });
   }
 
   render() {
@@ -42,17 +51,18 @@ class App extends React.Component {
         <Header />
         <List 
           posts={this.state.posts}
+          updateSelectedPost={this.updateSelectedPost}
         />
       </div>
       <div className="right-scene">
         <Post 
           selectedPost={this.state.selectedPost}
-          update={this.updateSelectedPost}
+          updateSelectedPost={this.updateSelectedPost}
         />  
       </div>
     </div>
     )
-  }
+  }  
 }
 
 export default App;
