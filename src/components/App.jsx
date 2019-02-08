@@ -11,7 +11,7 @@ class App extends React.Component {
 
     this.state = {
       posts: [],
-      selectedPost: {}
+      selectedPost: []
     }
   }
 
@@ -20,9 +20,6 @@ class App extends React.Component {
     accessToken: '4215982da63c13e8d6a98f4137041d176a1f7c97504329876ca2423b010b480b'
   })
 
-  componentDidMount() {
-    this.fetchPosts().then(this.setPosts);
-  }
 
   fetchPosts = () => this.client.getEntries()
   setPosts = response => {
@@ -31,16 +28,14 @@ class App extends React.Component {
     })
   }
 
-  componentWillMount() {
-    if (this.state.selectedPost = {}) {
-      this.updateSelectedPost(0)
-    }
+  componentDidMount() {
+    this.fetchPosts().then(this.setPosts);
   }
-
+ 
   updateSelectedPost(index) {
-    const selectedPost = {...this.state.selectedPost}
+    const posts = this.state.posts;
     this.setState({
-      selectedPost: this.state.posts[index]
+      selectedPost: posts[index]
     });
   }
 
@@ -55,10 +50,14 @@ class App extends React.Component {
         />
       </div>
       <div className="right-scene">
-        <Post 
+      {
+        Object
+          .keys(this.state.selectedPost)
+          .map(post => <Post key={post} 
           selectedPost={this.state.selectedPost}
-          updateSelectedPost={this.updateSelectedPost}
-        />  
+          updateSelectedPost={this.updateSelectedPost} />)
+      }
+        
       </div>
     </div>
     )
