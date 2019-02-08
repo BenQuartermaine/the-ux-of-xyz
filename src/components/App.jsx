@@ -31,7 +31,6 @@ class App extends React.Component {
     })
   }
 
-
   componentWillMount() {
     if (this.state.selectedPost = {}) {
       this.updateSelectedPost(0)
