@@ -55,7 +55,6 @@ class Slider extends React.Component {
   render() {
     return (
       <div className="slider">
-        <p>Rendering</p>
         <div className="slider-wrapper"
           style={{
             transform: `translateX(${this.state.translateValue}px)`,
