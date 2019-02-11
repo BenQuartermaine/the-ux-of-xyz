@@ -58,14 +58,13 @@ class Slider extends React.Component {
         <div className="slider-wrapper"
           style={{
             transform: `translateX(${this.state.translateValue}px)`,
-            // transition: 'transform ease-out 0.45s'
+            transition: 'transform ease-out 0.45s'
           }}>
             {
               this.state.images.map((image, i) => (
                 <Slide key={i} image={image} />
               ))
             }
-        </div>
 
         <LeftArrow
          goToPrevSlide={this.goToPrevSlide}
@@ -74,6 +73,7 @@ class Slider extends React.Component {
         <RightArrow
          goToNextSlide={this.goToNextSlide}
         />
+        </div>
       </div>
     );
   }
@@ -94,7 +94,6 @@ const Slide = ({ image }) => {
 const LeftArrow = (props) => {
   return (
     <div className="backArrow arrow" onClick={props.goToPrevSlide}>
-      <i className="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
     </div>
   );
 }
@@ -103,9 +102,8 @@ const LeftArrow = (props) => {
 const RightArrow = (props) => {
   return (
     <div className="nextArrow arrow" onClick={props.goToNextSlide}>
-      <i className="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
     </div>
-  );
+  ); 
 }
 
 export default Slider;

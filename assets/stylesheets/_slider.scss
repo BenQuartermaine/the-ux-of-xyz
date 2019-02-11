@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f9f9f9;
+  background: #2F69AE;
   border-radius: 50%;
   cursor: pointer;
   transition: transform ease-in .1s;
@@ -35,18 +35,14 @@
   position: absolute;
   top: 50%;
   right: 25px;
-  z-index: 999;
-  color: #fff;
+  color: #138250;
 }
 
 .backArrow {
   position: absolute;
   top: 50%;
   left: 25px;
-  z-index: 999;
-  color: #fff;
+  color: #2F69AE;
 }
 
-.fa-arrow-right:before, .fa-arrow-left:before {
-  color: #222
-}
+
