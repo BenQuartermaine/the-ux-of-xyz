@@ -8,8 +8,9 @@ class List extends React.Component {
   }
 
   handleClick(e) {
-    const index = e.target.dataset.index;
-    this.props.updateSelectedPost(index);
+    const name = e.target.dataset.name;
+    this.props.updateSelectedPost(name);
+    console.log(name);
   }
 
   render() {
@@ -17,8 +18,10 @@ class List extends React.Component {
       <div className="post-list">
         <ul>
           {
-            this.props.posts.map(({fields}, i) => {
-              return <li onClick={this.handleClick} key={i} data-index={i}>{fields.openingText}</li>
+            Object
+              .keys(this.props.content)
+              .map((name, i) => {
+              return <li onClick={this.handleClick} key={i} data-name={name}>{name}</li>
             })
           }
         </ul>
